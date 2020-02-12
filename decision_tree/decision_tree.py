@@ -22,3 +22,16 @@ decisionTreeClassifier = decisionTreeClassifier.fit(x_train, y_train) #train the
 y_pred = decisionTreeClassifier.predict(x_test) #predict for test data
 
 print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
+
+#Visualizing Decision Tree
+from sklearn.tree import export_graphviz
+from sklearn.externals.six import StringIO
+from IPython.display import Image
+import pydotplus
+
+dot_data = StringIO()
+export_graphviz(decisionTreeClassifier, out_file=dot_data,
+                filled=True, rounded=True, special_characters=True, feature_names=feature_cols, class_names=['0', '1'])
+graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+graph.write_png('diabetes.png')
+Image(graph.create_png())

@@ -17,7 +17,8 @@ y = pima.label
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=1)
 
 #building decision tree model
-decisionTreeClassifier = DecisionTreeClassifier() #create Decision Tree classifer object
+#decisionTreeClassifier = DecisionTreeClassifier() #create Decision Tree classifer object
+decisionTreeClassifier = DecisionTreeClassifier(criterion="entropy", max_depth=3) #to increase accuracy
 decisionTreeClassifier = decisionTreeClassifier.fit(x_train, y_train) #train the classifier
 y_pred = decisionTreeClassifier.predict(x_test) #predict for test data
 

@@ -14,7 +14,11 @@ x = pima[feature_cols]
 y = pima.label
 
 #splitting the data
-x_train, x_test, y_train, y_test = train_test_split(x, y, test=0.3, random_state=1)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=1)
 
 #building decision tree model
-clf = DecisionTreeClassifier() #create Decision Tree classifer object
+decisionTreeClassifier = DecisionTreeClassifier() #create Decision Tree classifer object
+decisionTreeClassifier = decisionTreeClassifier.fit(x_train, y_train) #train the classifier
+y_pred = decisionTreeClassifier.predict(x_test) #predict for test data
+
+print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
